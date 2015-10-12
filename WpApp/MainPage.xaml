@@ -21,12 +21,23 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
                             <ColumnDefinition Width="*" />
+                            
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TextBlock Text="{Binding Message}" DataContextChanged="TextBlock_DataContextChanged" />
+                        <Rectangle Grid.Column="0" 
+                                   Width="10">
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="Azure" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding Message}" 
+                                   DataContextChanged="TextBlock_DataContextChanged" 
+                                   Foreground="White"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
