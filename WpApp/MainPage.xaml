@@ -27,17 +27,23 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
+                            <RowDefinition Height="15" />
                         </Grid.RowDefinitions>
-                        <Rectangle Grid.Column="0" 
+                        <Rectangle Grid.Column="0"
+                                   Grid.RowSpan="2"
                                    Width="10">
                             <Rectangle.Fill>
-                                <SolidColorBrush Color="Azure" />
+                                <SolidColorBrush Color="#FF680068" />
                             </Rectangle.Fill>
                         </Rectangle>
                         <TextBlock Grid.Column="1"
-                                   Text="{Binding Message}" 
-                                   DataContextChanged="TextBlock_DataContextChanged" 
-                                   Foreground="White"/>
+                                   Grid.Row="0"
+                                   Text="{Binding Message}"
+                                   Foreground="White" FontSize="20"/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="1"
+                                   Text="{Binding Sender}"
+                                   Foreground="White" FontSize="10"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -51,7 +57,7 @@
             <TextBox Name="tbMessage"
                      Grid.Column="0"/>
             <Button Name="btnSend"
-                    Grid.Column="1"/>
+                    Grid.Column="1" Click="btnSend_Click"/>
         </Grid>
 
     </Grid>
