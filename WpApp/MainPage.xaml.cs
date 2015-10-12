@@ -28,6 +28,7 @@ namespace WpApp
     public sealed partial class MainPage : Page
     {
         DispatcherTimer timer = new DispatcherTimer();
+        public string Username { get; set; }
 
         public MainPage()
         {
@@ -43,6 +44,16 @@ namespace WpApp
         /// This parameter is typically used to configure the page.</param>
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+
+            if (Windows.Storage.ApplicationData.Current.LocalSettings.Values.Any(m => m.Key.Equals("username")))
+                this.Username = Windows.Storage.ApplicationData.Current.LocalSettings.Values.Single(m => m.Key.Equals("username")).Value as string;
+            else
+            {
+                var dialog = new Settings();
+                await dialog.ShowAsync();
+                this.Username = dialog.Username;
+            }
+
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(2);
             timer.Tick += Timer_Tick;
@@ -61,7 +72,11 @@ namespace WpApp
             this.lbMessages.ItemsSource = null;
             this.lbMessages.Items.Clear();
             this.lbMessages.ItemsSource = task.OrderBy(m=>m.Date);
+
+            lbMessages.ScrollIntoView(task.OrderBy(m => m.Date).Last());
         }
+
+
 
 
         private async Task<List<MessageModel>> LoadMessages()
@@ -106,7 +121,7 @@ namespace WpApp
             }
         }
 
-        private void btnSend_Click(object sender, RoutedEventArgs e)
+        private void btnSend_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbMessage.Text))
                 return;
@@ -116,10 +131,18 @@ namespace WpApp
                 Id = Guid.NewGuid(),
                 Date = DateTime.Now,
                 Message = tbMessage.Text,
-                Sender = "joni"
+                Sender = this.Username
             });
 
             tbMessage.Text = string.Empty;
+        }
+
+        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new Settings();
+            await dialog.ShowAsync();
+            if(!string.IsNullOrEmpty(dialog.Username))
+                this.Username = dialog.Username;
         }
     }
 }

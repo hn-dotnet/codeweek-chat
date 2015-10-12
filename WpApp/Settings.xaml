@@ -1,0 +1,39 @@
+﻿<ContentDialog
+    x:Class="WpApp.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WpApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="DIALOG TITLE"
+    PrimaryButtonText="speichern"  
+    SecondaryButtonText="abbrechen"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <TextBox x:Name="name" Header="Mein Name"/>
+
+
+        <TextBlock Text="Meine Farbe" Margin="0,20,0,0"/>
+        <RadioButton x:Name="rbViolet" 
+                     Content="Violet" 
+                     HorizontalAlignment="Stretch" 
+                     VerticalAlignment="Stretch" Foreground="#FF680068"/>
+        <RadioButton x:Name="rbYellow" 
+                     Content="Gelb" 
+                     HorizontalAlignment="Stretch" 
+                     VerticalAlignment="Stretch" Foreground="#FFD3B600"/>
+        <RadioButton x:Name="rbGreen" 
+                     Content="Grün" 
+                     HorizontalAlignment="Stretch" 
+                     VerticalAlignment="Stretch" Foreground="#FF206400"/>
+        <RadioButton x:Name="rbRed" 
+                     Content="Rot" 
+                     HorizontalAlignment="Stretch" 
+                     VerticalAlignment="Stretch" Foreground="#FF640000"/>
+
+
+    </StackPanel>
+</ContentDialog>

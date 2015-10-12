@@ -7,6 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands></CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Setting" Label="Einstellungen" Click="AppBarButton_Click"/>
+                
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -55,9 +64,10 @@
                 <ColumnDefinition Width="50" />
             </Grid.ColumnDefinitions>
             <TextBox Name="tbMessage"
-                     Grid.Column="0"/>
-            <Button Name="btnSend"
-                    Grid.Column="1" Click="btnSend_Click"/>
+                     Grid.Column="0" Margin="10,0,0,0"/>
+            <Image Name="btnSend"
+                   Grid.Column="1" Source="Assets/fa-send-o_50_0_007dff_none.png" Margin="10" Tapped="btnSend_Tapped"
+                   />
         </Grid>
 
     </Grid>
